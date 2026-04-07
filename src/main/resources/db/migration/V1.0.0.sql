@@ -3,7 +3,7 @@ create table user(
     user_name varchar(255),
     user_email_address  varchar(255),
     user_password varchar(255),
-    created_at datetime default current_timestamp,
-    updated_at datetime default current_timestamp on update current_timestamp,
+    created_at date,
+    updated_at date,
     constraint pk_user primary(user_id)
 );

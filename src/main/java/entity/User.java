@@ -3,6 +3,8 @@ package entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -26,14 +28,19 @@ public class User {
     private String userPassword;
 
     @Column(name="created_at")
-    private Date createdAt;
+    private LocalDate createdAt;
 
     @Column(name="updated_at")
-    private Date updatedAt;
+    private LocalDate updatedAt;
 
     @PrePersist
     public void init(){
-        createdAt = new Date();
+        createdAt =LocalDate.now();
+    }
+
+    @PreUpdate
+    public void initUpdate(){
+        updatedAt = LocalDate.now();
     }
 
 }
