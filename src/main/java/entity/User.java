@@ -1,9 +1,14 @@
 package entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.Date;
+
 
 @Table(name="User")
 @Entity
+@Data
 public class User {
 
     @Id
@@ -11,5 +16,24 @@ public class User {
     @Column(name="user_id")
     private Integer userId;
 
+    @Column(name="user_name")
+    private String userName;
+
+    @Column(name="user_email_address")
+    private String emailAddress;
+
+    @Column(name="user_password")
+    private String userPassword;
+
+    @Column(name="created_at")
+    private Date createdAt;
+
+    @Column(name="updated_at")
+    private Date updatedAt;
+
+    @PrePersist
+    public void init(){
+        createdAt = new Date();
+    }
 
 }
