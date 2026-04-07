@@ -27,6 +27,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-restclient-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-security-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+	runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
+	runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	compileOnly("org.projectlombok:lombok:1.18.32")
 	annotationProcessor("org.projectlombok:lombok:1.18.32")
