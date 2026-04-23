@@ -7,12 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+import service.JWTService;
+
 
 @RestController
 @RequestMapping("/auth/user")
 public class AuthController{
 
     private AuthenticationManager authenticationManager;
+    private JWTService jwtService;
 
 
     @PostMapping("/registration")
@@ -29,8 +32,9 @@ public class AuthController{
         String userPassword = userLogin.getPassword();
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName,userPassword));
-
-        return ResponseEntity.ok();
+        String token = jwtService.generateToken();
+        LoginResponse response = new LoginResponse(token);
+        return ResponseEntity.ok(response);
     }
 
 
