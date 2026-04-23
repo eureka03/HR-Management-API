@@ -2,6 +2,8 @@ package config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,5 +27,10 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserRepository repo){
         return username -> repo.findByUsername(username)
                 .orElseThrow(()-> new UsernameNotFoundException("Username not found"));
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config){
+        return config.getAuthenticationManager();
     }
 }
